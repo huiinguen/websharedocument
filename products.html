@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm - MyShop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS cho Dynamic Island */
+        .dynamic-island {
+            position: fixed; /* Đổi từ absolute thành fixed để cuộn theo viewport */
+            top: 20px; /* Đặt vị trí trên cùng */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background: #000; /* Dynamic Island màu đen */
+            border-radius: 50px; /* Tạo hình dạng viên thuốc */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease; /* Thêm transition mượt mà */
+            z-index: 1000; /* Đảm bảo đè lên nội dung khác */
+            overflow: hidden;
+            transform-origin: center; /* Đặt tâm phóng to ở giữa */
+        }
+
+        .dynamic-island.expanded {
+            width: 200px;
+            height: 60px;
+            background: #000; /* Giữ màu đen khi mở rộng */
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dynamic-island.expanded .content {
+            opacity: 1;
+        }
+
+        .left-content, .right-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .text {
+            font-size: 10px;
+            color: #bbb;
+        }
+
+        .right-content {
+            align-items: flex-end;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        /* Animation keyframes cho hiệu ứng nhịp đập */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Hiệu ứng khi hover */
+        .dynamic-island:hover {
+            transform: translateX(-50%) scale(1.1); /* Phóng to cân đối, giữ vị trí */
+            animation: pulse 0.5s infinite; /* Kết hợp với hiệu ứng nhịp đập */
+        }
+
+        .dynamic-island.expanded:hover {
+            transform: translateX(-50%) scale(1.1); /* Giữ vị trí trung tâm khi hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">MyShop</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-title="Trang Chủ">Trang Chủ</a></li>
+                    <li><a href="products.html" class="nav-link" data-title="Sản Phẩm">Sản Phẩm</a></li>
+                    <li><a href="reviews.html" class="nav-link" data-title="Review">Review</a></li>
+                    <li><a href="contact.html" class="nav-link" data-title="Liên Hệ">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dynamic Island -->
+    <div class="dynamic-island" id="dynamicIsland">
+        <div class="content">
+            <div class="left-content">
+                <div class="title" id="dynamicTitle">Sản Phẩm</div>
+                <div class="text" id="dynamicText">MyShop</div>
+            </div>
+            <div class="right-content">
+                <div class="icon"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <section class="products full-page">
+        <div class="container">
+            <h2>Tất Cả Sản Phẩm</h2>
+            <div class="filter-bar">
+                <input type="text" id="search" placeholder="Tìm kiếm sản phẩm...">
+                <select id="category">
+                    <option value="">Tất cả danh mục</option>
+                    <option value="tech">Công nghệ</option>
+                    <option value="tips">Mẹo free</option>
+                </select>
+            </div>
+            <div class="product-grid">
+                <!-- Sản phẩm Công nghệ -->
+                <div class="product-card" data-category="tech">
+                    <img src="python.jpg" alt="Tool python">
+                    <h3>Tool python</h3>
+                    <p>10.000 VND</p>
+                    <p class="note">Chức năng: spam chữ</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="1">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tech">
+                    <img src="python.jpg" alt="Tool python">
+                    <h3>Tool python</h3>
+                    <p>10.000 VND</p>
+                    <p class="note">Chức năng: spam chữ dạng con trỏ</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="2">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tech">
+                    <img src="c++.jpg" alt="Tool C++">
+                    <h3>Tool C++</h3>
+                    <p>50.000 VND</p>
+                    <p class="note">Chức năng: tính toán, mã hóa, và 1 số công việc kết hợp python</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="3">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tech">
+                    <img src="python.jpg" alt="Tool C++">
+                    <h3>Tool python</h3>
+                    <p class="note">Chức năng:cày xu trao đổi sub trên tiktok</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="3">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tech">
+                    <img src="python.jpg" alt="Tool C++">
+                    <h3>Tool python</h3>
+                    <p class="note">Chức năng:cày xu trao đổi sub trên facebook</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="3">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tech">
+                    <img src="python.jpg" alt="Tool C++">
+                    <h3>Tool python</h3>
+                    <p class="note">Chức năng: backup data ổ cứng</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="3">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tech">
+                    <img src="c++.jpg" alt="Tool C++">
+                    <h3>Mã nguồn tool c++</h3>
+                    <p>100.000 VND</p>
+                    <p class="note">Hỗ trợ chạy code và cài môi trường</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="3">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tech">
+                    <img src="tool.jpg" alt="Tool C++">
+                    <h3>Crask win,office</h3>
+                    <p class="note">Tool crask win,office,...(gia hạn thời gian)</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="3">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tech">
+                    <h3>Explorer trong suốt</h3>
+                    <p class="note">Tool crask win,office,...(gia hạn thời gian)</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="3">Xem Chi Tiết</a>
+                </div>
+                <!-- Sản phẩm Mẹo Hay -->
+                <div class="product-card" data-category="tips">
+                    <img src="locket.jpg" alt="Mẹo 1: Bảo Quản Pin">
+                    <h3>Module locket gold 1</h3>
+                    <p class="note">copy link dán vô shadow</p>
+                    <a href="https://raw.githubusercontent.com/hvbstar/coderhvb/main/Locket_Gold_HVB.sgmodule" target="_blank" class="btn add-to-cart" data-id="7">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tips">
+                    <img src="locket.jpg" alt="Mẹo 2: Tăng Tốc Độ">
+                    <h3>Module locket gold 2</h3>
+                    <p class="note">copy link dán vô shadow</p>
+                    <a href="https://raw.githubusercontent.com/vuong2023/shad/main/modules/Locket_ohb.sgmodule" target="_blank" class="btn add-to-cart" data-id="8">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tips">
+                    <img src="shadow.jpg" alt="Mẹo 3: Tiết Kiệm Điện">
+                    <h3>Tải shadow free</h3>
+                    <p class="note">Hướng dẫn sử dụng</p>
+                    <a href="https://idapple.csadata4g.me/" target="_blank" class="btn add-to-cart" data-id="9">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tips">
+                    <img src="youtube.png" alt="Mẹo 3: Tiết Kiệm Điện">
+                    <h3>Link youtube premium</h3>
+                    <p class="note">copy link dán vô shadow</p>
+                    <a href="https://raw.githubusercontent.com/quocchienn/Make/refs/heads/crack/YouTube_%20premium.conf" target="_blank" class="btn add-to-cart" data-id="10">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tips">
+                    <img src="youtube.png" alt="Mẹo 3: Tiết Kiệm Điện">
+                    <h3>Mudule youtube premium</h3>
+                    <p class="note">copy link dán vô shadow</p>
+                    <a href="https://raw.githubusercontent.com/vantuan380/youtubep/refs/heads/pre/YouTube%20premium.mudule" target="_blank" class="btn add-to-cart" data-id="11">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tips">
+                    <img src="capcut.jpg" alt="Mẹo 3: Tiết Kiệm Điện">
+                    <h3>Acc capcut pro</h3>
+                    <p class="note">Đăng nhập = mail, acc ngẫu nhiên thời gian pro,dùng chung nên hay bị out...</p>
+                    <a href="https://anotepad.com/notes/hd429qhr?fbclid=IwY2xjawJDlNlleHRuA2FlbQIxMAABHa2pjTr6kz2r3-qgjfjwY5Scm4hiAzUO7Xm5FwaGq6VQsXSmDFlj-noYNQ_aem_1AIDuoJHHRMj0A5l85qpZQ" target="_blank" class="btn add-to-cart" data-id="11">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tips">
+                    <img src="capcut.jpg" alt="Mẹo 3: Tiết Kiệm Điện">
+                    <h3>Acc capcut pro 2</h3>
+                    <p class="note">Đăng nhập = mail, acc ngẫu nhiên thời gian pro,dùng chung nên hay bị out...</p>
+                    <a href="https://anotepad.com/notes/7em5tqwn?utm_source=zalo&utm_medium=zalo&utm_campaign=zalo&fbclid=IwY2xjawJDm7NleHRuA2FlbQIxMAABHboLQTBu9IfIkLwXmmwYMDseyfvuAmj6pVKYX2CljJUyHKzyH8LGQ_eNkg_aem_rIHcSPleZ7C61JLrO9mMaQ" target="_blank" class="btn add-to-cart" data-id="11">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tips">
+                    <img src="spotify.jpg" alt="Mẹo 3: Tiết Kiệm Điện">
+                    <h3>Mudule sportify</h3>
+                    <p class="note">copy link dán vô shadow</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="12">Xem Chi Tiết</a>
+                </div>
+                <div class="product-card" data-category="tips">
+                    <img src="soundcloud.jpg" alt="Mẹo 3: Tiết Kiệm Điện">
+                    <h3>Mudule soundcloud</h3>
+                    <p class="note">copy link dán vô shadow</p>
+                    <a href="#" target="_blank" class="btn add-to-cart" data-id="13">Xem Chi Tiết</a>
+                </div>
+            </div>
+            <div class="pagination">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 MyShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+        // JavaScript cho Dynamic Island
+        const dynamicIsland = document.getElementById('dynamicIsland');
+        const dynamicTitle = document.getElementById('dynamicTitle');
+        const dynamicText = document.getElementById('dynamicText');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Khi nhấn vào link trong taskbar, lưu tiêu đề vào localStorage và mở rộng Dynamic Island
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const title = link.getAttribute('data-title');
+                localStorage.setItem('dynamicTitle', title); // Lưu tiêu đề vào localStorage
+                localStorage.setItem('isExpanded', 'true'); // Lưu trạng thái mở rộng
+                dynamicTitle.textContent = title; // Cập nhật tiêu đề ngay lập tức
+                dynamicIsland.classList.add('expanded'); // Mở rộng Dynamic Island
+
+                // Tự động thu nhỏ sau 1 giây
+                setTimeout(() => {
+                    dynamicIsland.classList.remove('expanded');
+                    localStorage.setItem('isExpanded', 'false'); // Cập nhật trạng thái sau khi thu nhỏ
+                }, 1000);
+            });
+        });
+
+        // Khi trang được tải, kiểm tra localStorage và cập nhật Dynamic Island
+        window.addEventListener('load', () => {
+            const savedTitle = localStorage.getItem('dynamicTitle') || 'Sản Phẩm';
+            const isExpanded = localStorage.getItem('isExpanded') === 'true';
+
+            dynamicTitle.textContent = savedTitle; // Cập nhật tiêu đề
+            dynamicText.textContent = 'MyShop'; // Giữ nguyên text phụ
+
+            if (isExpanded) {
+                dynamicIsland.classList.add('expanded'); // Mở rộng Dynamic Island nếu đã lưu trạng thái
+                setTimeout(() => {
+                    dynamicIsland.classList.remove('expanded');
+                    localStorage.setItem('isExpanded', 'false'); // Cập nhật trạng thái sau khi thu nhỏ
+                }, 1000);
+            }
+        });
+
+        // Tương tác: mở rộng khi hover
+        dynamicIsland.addEventListener('mouseover', () => {
+            dynamicIsland.classList.add('expanded');
+        });
+
+        dynamicIsland.addEventListener('mouseout', () => {
+            dynamicIsland.classList.remove('expanded');
+        });
+    </script>
+</body>
+</html>

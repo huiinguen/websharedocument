@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Island Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #fff; /* Nền trắng */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .dynamic-island {
+            position: absolute;
+            top: 20px; /* Đặt vị trí trên cùng */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background: #000; /* Dynamic Island màu đen */
+            border-radius: 50px; /* Tạo hình dạng viên thuốc */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease; /* Thêm transition cho scale */
+            z-index: 10;
+            overflow: hidden;
+            transform-origin: center; /* Đặt tâm phóng to ở giữa */
+        }
+
+        .dynamic-island.expanded {
+            width: 200px;
+            height: 60px;
+            background: #000; /* Giữ màu đen khi mở rộng */
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dynamic-island.expanded .content {
+            opacity: 1;
+        }
+
+        .left-content, .right-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .text {
+            font-size: 10px;
+            color: #bbb;
+        }
+
+        .right-content {
+            align-items: flex-end;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        /* Animation keyframes cho hiệu ứng nhịp đập */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Hiệu ứng khi hover */
+        .dynamic-island:hover {
+            transform: translateX(-50%) scale(1.1); /* Phóng to cân đối */
+            animation: pulse 0.5s infinite; /* Kết hợp với hiệu ứng nhịp đập */
+        }
+
+        /* Đảm bảo không bị lệch khi mở rộng */
+        .dynamic-island.expanded:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="dynamic-island" id="dynamicIsland">
+        <div class="content">
+            <div class="left-content">
+                <div class="title">Incoming Call</div>
+                <div class="text">John Doe</div>
+            </div>
+            <div class="right-content">
+                <div class="icon"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dynamicIsland = document.getElementById('dynamicIsland');
+
+        // Tương tác: mở rộng khi hover
+        dynamicIsland.addEventListener('mouseover', () => {
+            dynamicIsland.classList.add('expanded');
+        });
+
+        dynamicIsland.addEventListener('mouseout', () => {
+            dynamicIsland.classList.remove('expanded');
+        });
+    </script>
+</body>
+</html>

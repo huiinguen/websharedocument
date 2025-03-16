@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review - MyShop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS cho Dynamic Island */
+        .dynamic-island {
+            position: fixed; /* Đổi từ absolute thành fixed để cuộn theo viewport */
+            top: 20px; /* Đặt vị trí trên cùng */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background: #000; /* Dynamic Island màu đen */
+            border-radius: 50px; /* Tạo hình dạng viên thuốc */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease; /* Thêm transition mượt mà */
+            z-index: 1000; /* Đảm bảo đè lên nội dung khác */
+            overflow: hidden;
+            transform-origin: center; /* Đặt tâm phóng to ở giữa */
+        }
+
+        .dynamic-island.expanded {
+            width: 200px;
+            height: 60px;
+            background: #000; /* Giữ màu đen khi mở rộng */
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dynamic-island.expanded .content {
+            opacity: 1;
+        }
+
+        .left-content, .right-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .text {
+            font-size: 10px;
+            color: #bbb;
+        }
+
+        .right-content {
+            align-items: flex-end;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        /* Animation keyframes cho hiệu ứng nhịp đập */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Hiệu ứng khi hover */
+        .dynamic-island:hover {
+            transform: translateX(-50%) scale(1.1); /* Phóng to cân đối, giữ vị trí */
+            animation: pulse 0.5s infinite; /* Kết hợp với hiệu ứng nhịp đập */
+        }
+
+        .dynamic-island.expanded:hover {
+            transform: translateX(-50%) scale(1.1); /* Giữ vị trí trung tâm khi hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">MyShop</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-title="Trang Chủ">Trang Chủ</a></li>
+                    <li><a href="products.html" class="nav-link" data-title="Sản Phẩm">Sản Phẩm</a></li>
+                    <li><a href="reviews.html" class="nav-link" data-title="Review">Review</a></li>
+                    <li><a href="contact.html" class="nav-link" data-title="Liên Hệ">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dynamic Island -->
+    <div class="dynamic-island" id="dynamicIsland">
+        <div class="content">
+            <div class="left-content">
+                <div class="title" id="dynamicTitle">Review</div>
+                <div class="text" id="dynamicText">MyShop</div>
+            </div>
+            <div class="right-content">
+                <div class="icon"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <section class="reviews full-page">
+        <div class="container">
+            <h2>Đánh Giá và Nhận Xét</h2>
+            <div class="review-grid">
+                <div class="review-card slide-up">
+                    <img src="meme.jpg" alt="Sản phẩm 1">
+                    <h3>OK nha</h3>
+                    <p class="rating">★★★★★</p>
+                    <p>"phần mẹo hay có nhiều thứ tuyệt"</p>
+                    <p class="author">- Vãi văn nồi</p>
+                </div>
+                <div class="review-card slide-up">
+                    <h3>kkk ngon</h3>
+                    <p class="rating">★★★★☆</p>
+                    <p>"10 sao lun"</p>
+                    <p class="author">- Lò vi sóng</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 MyShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+        // JavaScript cho Dynamic Island
+        const dynamicIsland = document.getElementById('dynamicIsland');
+        const dynamicTitle = document.getElementById('dynamicTitle');
+        const dynamicText = document.getElementById('dynamicText');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Khi nhấn vào link trong taskbar, lưu tiêu đề vào localStorage và mở rộng Dynamic Island
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const title = link.getAttribute('data-title');
+                localStorage.setItem('dynamicTitle', title); // Lưu tiêu đề vào localStorage
+                localStorage.setItem('isExpanded', 'true'); // Lưu trạng thái mở rộng
+                dynamicTitle.textContent = title; // Cập nhật tiêu đề ngay lập tức
+                dynamicIsland.classList.add('expanded'); // Mở rộng Dynamic Island
+
+                // Tự động thu nhỏ sau 1 giây
+                setTimeout(() => {
+                    dynamicIsland.classList.remove('expanded');
+                    localStorage.setItem('isExpanded', 'false'); // Cập nhật trạng thái sau khi thu nhỏ
+                }, 1000);
+            });
+        });
+
+        // Khi trang được tải, kiểm tra localStorage và cập nhật Dynamic Island
+        window.addEventListener('load', () => {
+            const savedTitle = localStorage.getItem('dynamicTitle') || 'Review';
+            const isExpanded = localStorage.getItem('isExpanded') === 'true';
+
+            dynamicTitle.textContent = savedTitle; // Cập nhật tiêu đề
+            dynamicText.textContent = 'MyShop'; // Giữ nguyên text phụ
+
+            if (isExpanded) {
+                dynamicIsland.classList.add('expanded'); // Mở rộng Dynamic Island nếu đã lưu trạng thái
+                setTimeout(() => {
+                    dynamicIsland.classList.remove('expanded');
+                    localStorage.setItem('isExpanded', 'false'); // Cập nhật trạng thái sau khi thu nhỏ
+                }, 1000);
+            }
+        });
+
+        // Tương tác: mở rộng khi hover
+        dynamicIsland.addEventListener('mouseover', () => {
+            dynamicIsland.classList.add('expanded');
+        });
+
+        dynamicIsland.addEventListener('mouseout', () => {
+            dynamicIsland.classList.remove('expanded');
+        });
+    </script>
+</body>
+</html>
