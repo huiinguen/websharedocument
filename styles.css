@@ -1,0 +1,639 @@
+/* Reset CSS cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: 700;
+    float: left;
+}
+
+header nav {
+    float: right;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+header nav ul li a:hover {
+    color: #007bff;
+}
+
+/* Hero Section */
+.hero {
+    background: url('images/hero-bg.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.qr-btn {
+    background-color: #ff4444;
+    border: none;
+    margin-left: 10px;
+}
+
+.qr-btn:hover {
+    background-color: #cc0000;
+}
+
+/* Product Section */
+.products {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.products h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333; /* Màu chữ mặc định */
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 khối mỗi hàng */
+   部分: 20px; /* Khoảng cách giữa các khối */
+}
+
+/* Full Page Sections */
+.full-page {
+    padding: 120px 0;
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+/* Filter Bar (Products Page) */
+.filter-bar {
+    margin-bottom: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+.filter-bar input, .filter-bar select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #fff; /* Màu nền mặc định */
+    color: #333; /* Màu chữ mặc định */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Pagination (Products Page) */
+.pagination {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.pagination .btn {
+    margin: 0 5px;
+}
+
+/* Review Card (Reviews Page) */
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.review-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.5s ease;
+}
+
+.review-card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.review-card .rating {
+    color: #f1c40f;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.review-card .author {
+    font-style: italic;
+    color: #777;
+    margin-top: 10px;
+}
+
+/* Contact Grid (Contact Page) */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.contact-info, .contact-form {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.5s ease;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.contact-form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+#visit-info {
+    font-size: 14px;
+}
+
+/* CSS cho Dynamic Island */
+.dynamic-island {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 30px;
+    background: #000;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: width 0.3s ease, height 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.dynamic-island.expanded {
+    width: 200px;
+    height: 60px;
+    background: #000;
+}
+
+.dynamic-island .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dynamic-island.expanded .content {
+    opacity: 1;
+}
+
+.dynamic-island .left-content, .dynamic-island .right-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.dynamic-island .title {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.dynamic-island .text {
+    font-size: 10px;
+    color: #bbb;
+}
+
+.dynamic-island .right-content {
+    align-items: flex-end;
+}
+
+.dynamic-island .icon {
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+/* CSS cho product-card */
+.product-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px; /* Giảm padding để thu ngắn chiều dài */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    width: 100%; /* Chiếm toàn bộ chiều rộng cột */
+    max-width: 300px; /* Thu ngắn chiều dài tối đa để vừa 3 khối */
+    height: auto;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    max-width: 80px; /* Giữ nguyên độ rộng ảnh */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 10px; /* Giảm margin để thu ngắn chiều dài */
+}
+
+.product-card .content-wrapper {
+    flex: 1;
+    text-align: left;
+    overflow: hidden; /* Ẩn nội dung vượt quá */
+    white-space: nowrap; /* Giữ tên và số tiền trên một dòng */
+}
+
+.product-card h3 {
+    font-size: 16px; /* Giữ nguyên kích thước tên */
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.product-card p {
+    font-size: 14px; /* Giữ nguyên kích thước số tiền */
+    color: #666;
+    margin: 0; /* Loại bỏ khoảng cách thừa */
+}
+
+.product-card .note.hidden {
+    display: none; /* Ẩn nội dung .note */
+}
+
+/* CSS cho nút bút */
+.btn-icon {
+    position: absolute;
+    bottom: 5px; /* Giảm khoảng cách để vừa khối nhỏ hơn */
+    right: 5px;
+    width: 25px; /* Giảm kích thước nút */
+    height: 25px;
+    background: #007bff;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; /* Giảm kích thước font */
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.btn-icon:hover {
+    background: #0056b3;
+}
+
+/* CSS cho ô vuông nhỏ (nút mở popup) */
+.info-square {
+    position: absolute;
+    top: 5px; /* Giảm khoảng cách để vừa khối nhỏ hơn */
+    right: 5px;
+    width: 18px; /* Giảm kích thước ô vuông */
+    height: 18px;
+    background: #28a745;
+    color: #fff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px; /* Giảm kích thước font */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.info-square:hover {
+    background: #218838;
+}
+
+/* CSS cho cửa sổ popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px; /* Tăng chiều rộng popup để chứa ảnh */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    padding: 20px;
+}
+
+.popup-content {
+    position: relative;
+}
+
+.popup-content h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.popup-content p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: #dc3545;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.close-popup:hover {
+    background: #c82333;
+}
+
+/* CSS cho overlay (lớp phủ mờ) */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+}
+
+/* Contact Page Specific Styles */
+.contact h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.contact-info h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.contact-info p em {
+    color: #007bff;
+}
+
+/* Theme styles */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.theme-toggle:hover {
+    background-color: #0056b3;
+}
+
+body.dark-theme {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+body.dark-theme header {
+    background-color: #2c2c2c;
+}
+
+body.dark-theme header nav ul li a {
+    color: #fff; /* Màu chữ trắng để nổi bật trong chế độ tối */
+}
+
+body.dark-theme header nav ul li a:hover {
+    color: #007bff; /* Giữ màu hover xanh */
+}
+
+body.dark-theme .products {
+    background-color: #2c2c2c;
+}
+
+body.dark-theme .products h2 {
+    color: #fff; /* Màu chữ trắng */
+    background: rgba(255, 255, 255, 0.1); /* Nền mờ để làm nổi bật */
+    padding: 10px 20px; /* Thêm padding để tạo không gian */
+    border-radius: 5px; /* Bo góc */
+    display: inline-block; /* Chỉ bao quanh nội dung */
+}
+
+body.dark-theme .filter-bar input,
+body.dark-theme .filter-bar select {
+    background-color: #555; /* Màu nền sáng hơn */
+    border-color: #888; /* Viền sáng hơn */
+    color: #fff; /* Màu chữ trắng */
+}
+
+body.dark-theme .filter-bar input::placeholder {
+    color: #ccc; /* Màu placeholder nhạt hơn */
+}
+
+body.dark-theme .filter-bar input:hover,
+body.dark-theme .filter-bar select:hover {
+    background-color: #666; /* Hiệu ứng hover sáng hơn */
+    border-color: #aaa; /* Viền sáng hơn khi hover */
+}
+
+body.dark-theme .product-card {
+    background: #444; /* Màu nền sáng hơn để nổi bật */
+    border-color: #666; /* Viền sáng hơn để tạo điểm nhấn */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Thêm bóng để tăng chiều sâu */
+}
+
+body.dark-theme .product-card h3 {
+    color: #fff; /* Màu tiêu đề sáng để dễ đọc */
+}
+
+body.dark-theme .product-card .note {
+    color: #ccc; /* Màu mô tả nhạt hơn để phân biệt với tiêu đề */
+}
+
+body.dark-theme .product-card:hover {
+    background: #555; /* Hiệu ứng hover để làm nổi bật */
+    transform: translateY(-5px); /* Nâng nhẹ khi hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); /* Tăng bóng khi hover */
+}
+
+body.dark-theme footer {
+    background-color: #1a1a1a;
+}
+
+body.dark-theme .popup {
+    background: #333;
+}
+
+body.dark-theme .popup-content h3 {
+    color: #fff;
+}
+
+body.dark-theme .popup-content p {
+    color: #ccc;
+}
+
+/* Dark theme for Contact Page */
+body.dark-theme .contact {
+    background-color: #2c2c2c;
+}
+
+body.dark-theme .contact h2 {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+body.dark-theme .contact-info h3 {
+    color: #fff;
+}
+
+body.dark-theme .contact-info p {
+    color: #ccc;
+}
+
+body.dark-theme .contact-info p em {
+    color: #007bff;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    .hero p {
+        font-size: 16px;
+    }
+    .product-grid, .review-grid, .contact-grid {
+        grid-template-columns: 1fr; /* 1 cột trên màn hình nhỏ */
+    }
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work - MyShop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">MyShop</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-title="Trang Chủ">Trang Chủ</a></li>
+                    <li><a href="products.html" class="nav-link" data-title="Sản Phẩm">Sản Phẩm</a></li>
+                    <li><a href="work.html" class="nav-link" data-title="Work">Work</a></li>
+                    <li><a href="contact.html" class="nav-link" data-title="Liên Hệ">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dynamic Island -->
+    <div class="dynamic-island" id="dynamicIsland">
+        <div class="content">
+            <div class="left-content">
+                <div class="title" id="dynamicTitle">Work</div>
+                <div class="text" id="dynamicText">MyShop</div>
+            </div>
+            <div class="right-content">
+                <div class="icon"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle">Toggle Theme</button>
+
+    <!-- Work Section -->
+    <section class="products full-page">
+        <div class="container">
+            <div class="filter-bar">
+                <input type="text" id="search" placeholder="Tìm kiếm công việc...">
+                <select id="category">
+                    <option value="">Tất cả danh mục</option>
+                    <option value="node-depin">Node Depin</option>
+                    <option value="traodoisub">TraoDoiSub</option>
+                    <option value="golike">Golike</option>
+                </select>
+            </div>
+            <div class="product-grid">
+                <!-- Node Depin -->
+                <div class="product-card" data-category="node-depin">
+                    <div class="content-wrapper">
+                        <h3>nodepay</h3>
+                        <p class="note"><em>dự án treo bằng wifi</em></p>
+                    </div>
+                    <a href="https://app.nodepay.ai/register?ref=O19Z6AdGljyPoR7" target="_blank" class="btn-icon" data-id="1">✍️</a>
+                </div>
+                <div class="product-card" data-category="node-depin">
+                    <div class="content-wrapper">
+                        <h3>open loop</h3>
+                        <p class="note"><em>treo bằng wifi(mã mời) : olc59f94b9</em></p>
+                    </div>
+                </div>
+                <div class="product-card" data-category="node-depin">
+                    <div class="content-wrapper">
+                        <h3>bless</h3>
+                        <p class="note"><em>treo bằng wifi</em></p>
+                    </div>
+                    <a href="https://bless.network/dashboard?ref=7VNWZX" target="_blank" class="btn-icon" data-id="1">✍️</a>
+                </div>
+                <div class="product-card" data-category="node-depin">
+                    <div class="content-wrapper">
+                        <h3>gradient</h3>
+                        <p class="note"><em>treo bằng wifi(mã mời): S6BUFC</em></p>
+                    </div>
+                </div>
+                <div class="product-card" data-category="node-depin">
+                    <div class="content-wrapper">
+                        <h3>flow3</h3>
+                        <p class="note"><em>treo bằng wifi</em></p>
+                    </div>
+                    <a href="https://dashboard.flow3.tech?ref=undefined" target="_blank" class="btn-icon" data-id="1">✍️</a>
+                </div>
+
+                <!-- TraoDoiSub -->
+                <div class="product-card" data-category="traodoisub">
+                    <div class="content-wrapper">
+                        <h3>TraoDoiSub</h3>
+                        <p class="note"><em>cày xu tăng tương tác bằng xu</em></p>
+                    </div>
+                    <a href="https://traodoisub.com" target="_blank" class="btn-icon" data-id="3">✍️</a>
+                </div>
+
+                <!-- Golike -->
+                <div class="product-card" data-category="golike">
+                    <div class="content-wrapper">
+                        <h3>Golike</h3>
+                        <p class="note"><em>Ghi chú: Kiếm tiền từ công việc đơn giản</em></p>
+                    </div>
+                    <a href="https://app.golike.net/home" target="_blank" class="btn-icon" data-id="5">✍️</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 MyShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

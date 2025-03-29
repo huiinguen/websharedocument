@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Review và Bán Hàng</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS cho Dynamic Island */
+        .dynamic-island {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background: #000;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+            transform-origin: center;
+        }
+
+        .dynamic-island.expanded {
+            width: 200px;
+            height: 60px;
+            background: #000;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dynamic-island.expanded .content {
+            opacity: 1;
+        }
+
+        .left-content, .right-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .text {
+            font-size: 10px;
+            color: #bbb;
+        }
+
+        .right-content {
+            align-items: flex-end;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">MyShop</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-title="Trang Chủ">Trang Chủ</a></li>
+                    <li><a href="products.html" class="nav-link" data-title="Sản Phẩm">Sản Phẩm</a></li>
+                    <li><a href="work.html" class="nav-link" data-title="Work">Work</a></li>
+                    <li><a href="contact.html" class="nav-link" data-title="Liên Hệ">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dynamic Island -->
+    <div class="dynamic-island" id="dynamicIsland">
+        <div class="content">
+            <div class="left-content">
+                <div class="title" id="dynamicTitle">Trang Chủ</div>
+                <div class="text" id="dynamicText">MyShop</div>
+            </div>
+            <div class="right-content">
+                <div class="icon"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in">Chia sẻ những thứ hữu ích </h1>
+            <p class="fade-in">MẸO - CÔNG VIỆC - CÔNG CỤ</p>
+            <a href="products.html" class="btn">Công cụ</a>
+            <a href="work.html" class="btn">công việc</a>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 MyShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+        // JavaScript cho Dynamic Island
+        const dynamicIsland = document.getElementById('dynamicIsland');
+        const dynamicTitle = document.getElementById('dynamicTitle');
+        const dynamicText = document.getElementById('dynamicText');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const title = link.getAttribute('data-title');
+                localStorage.setItem('dynamicTitle', title);
+                localStorage.setItem('isExpanded', 'true');
+                dynamicTitle.textContent = title;
+                dynamicIsland.classList.add('expanded');
+
+                setTimeout(() => {
+                    dynamicIsland.classList.remove('expanded');
+                    localStorage.setItem('isExpanded', 'false');
+                }, 1000);
+            });
+        });
+
+        window.addEventListener('load', () => {
+            const savedTitle = localStorage.getItem('dynamicTitle') || 'Trang Chủ';
+            const isExpanded = localStorage.getItem('isExpanded') === 'true';
+
+            dynamicTitle.textContent = savedTitle;
+            dynamicText.textContent = 'MyShop';
+
+            if (isExpanded) {
+                dynamicIsland.classList.add('expanded');
+                setTimeout(() => {
+                    dynamicIsland.classList.remove('expanded');
+                    localStorage.setItem('isExpanded', 'false');
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
